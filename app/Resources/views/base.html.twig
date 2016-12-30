@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}jQuery, write less, do more{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/jquery-logo.png') }}" />
+    </head>
+    
+    <!--http://learn.jquery.com/about-jquery/-->
+    <body>
+        <header> 
+            <div class="logo-img">
+                <a href="http://localhost/processwire/" class="logo-a"><img src="{{ asset('images/jquery-logo.png') }}" id="logo-header" class="img-responsive" alt="Responsive image"></a>
+                <h1>jQuery <span>write less, do more</span></h1>
+            </div>
+            <nav>
+                <ul id="navbar" class="nav nav-pills">
+                    <li role="presentation"><a href="{{ path('homepage') }}">Home</a></li>
+                    <li role="presentation"><a href="{{ url('selectors') }}">Selectores</a></li>
+                    <li role="presentation"><a href="{{ path('dom') }}">DOM</a></li>
+                    <li role="presentation"><a href="{{ path('events') }}">Eventos</a></li>
+                    <li role="presentation"><a href="{{ path('effects') }}">Efectos</a></li>
+                    <li role="presentation"><a href="{{ path('cheatsheet') }}">Cheatsheet</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="wrapper-main">
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+            <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/slider.js') }}"></script>
+        {% endblock %}
+        </div>
+        <footer>
+            <p>
+                Creado por <a href='https://www.linkedin.com/in/antonio-jes%C3%BAs-ib%C3%A1%C3%B1ez-garc%C3%ADa-47107871?trk=pub-pbmap'>Antonio Ibáñez &copy;</a>
+            </p>
+        </footer>
+    </body>
+</html>

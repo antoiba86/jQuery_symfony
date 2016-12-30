@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="caja_inferior">
+        <a id="href_header" href="registro.html" rel="home"><img  src="{{ asset('images/imagen1.jpg') }}" alt="ies celia vina" id="slide"/></a>
+        <div id="botones">
+            <a href="#"><img  src="{{ asset('images/botonlleno.png') }}" alt="Boton" id="button0" class="boton buttons"/></a>
+            <a href="#"><img  src="{{ asset('images/botonvacio.png') }}" alt="Boton" id="button1" class="boton buttons"/></a>
+            <a href="#"><img  src="{{ asset('images/botonvacio.png') }}" alt="Boton" id="button2" class="boton buttons"/></a>
+        </div>
+        <a id="button_a" href="registro.html">Registro</a><br/>
+    </section>
+    <p>Empezar con jQuery puede ser fácil o un reto, dependiendo de tu experiencia con JavaScript, HTML, CSS y tu experiencia programando en general.
+       Algo importante sobre jQuery es que es solo una librería de Javascript, es decir, todo el potencial de jQuery viene de JavaScript, así que si conocer Javascript es fundamental.
+    </p>
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/jquery.gif') }}" alt="home" class="img-row"/></a></div>
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/selectojquery.png') }}" alt="home" class="img-row"/></a></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/jquerydom.png') }}" alt="home" class="img-row"/></a></div>
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/eventjquery.png') }}" alt="home" class="img-row"/></a></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/Jquery_effects.jpg') }}" alt="home" class="img-row"/></a></div>
+                <div class="col-sm-12 col-md-6" ><a href="#"><img src="{{ asset('images/jquery.gif') }}" alt="home" class="img-row"/></a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
