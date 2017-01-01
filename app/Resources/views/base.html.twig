@@ -7,6 +7,7 @@
             <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/precode/railscasts.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('images/jquery-logo.png') }}" />
     </head>
@@ -15,12 +16,13 @@
     <body>
         <header> 
             <div class="logo-img">
-                <a href="http://localhost/processwire/" class="logo-a"><img src="{{ asset('images/jquery-logo.png') }}" id="logo-header" class="img-responsive" alt="Responsive image"></a>
+                <a href="{{ path('homepage') }}" class="logo-a"><img src="{{ asset('images/jquery-logo.png') }}" id="logo-header" class="img-responsive" alt="Responsive image"></a>
                 <h1>jQuery <span>write less, do more</span></h1>
             </div>
             <nav>
                 <ul id="navbar" class="nav nav-pills">
                     <li role="presentation"><a href="{{ path('homepage') }}">Home</a></li>
+                    <li role="presentation"><a href="{{ path('intro') }}">Introducción</a></li>
                     <li role="presentation"><a href="{{ url('selectors') }}">Selectores</a></li>
                     <li role="presentation"><a href="{{ path('dom') }}">DOM</a></li>
                     <li role="presentation"><a href="{{ path('events') }}">Eventos</a></li>
@@ -35,6 +37,8 @@
         {% block javascripts %}
             <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
             <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/highlight.pack.js') }}"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         {% endblock %}
         </div>
         <footer>

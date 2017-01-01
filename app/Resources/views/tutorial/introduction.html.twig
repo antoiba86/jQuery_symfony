@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>
+    Cómo Funciona jQuery
+</h1>
+<div>
+    <h3>Lo básico</h3>
+    <p>Estp es un pequeño tutorial echo para ayudarte a empezar usando jQuery. Crea una página html si no la tienes ya.
+    </p>
+    <br>
+    <pre>
+        <code>
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href="http://jquery.com/"&gt;jQuery&lt;/a&gt;
+    &lt;script src="jquery.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+ 
+    //Todo el código aquí
+ 
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;  
+        </code>
+    </pre>
+    <br>
+<p>El atributo src en el script debe de apuntar a un archivo jQuery, ya sea los que están en internet o una copia que se haya descargado de la página de jQuery.</p>
+<h3>Esperar a que el documento esté listo</h3>
+<p>Para asegurarse que el navegador ha cargado el document antes de lanzar el código, una buena práctica es encapsular el código en una función onload. </p>
+<br>
+<pre>
+        <code>
+window.onload = function() {
+ 
+    alert( "welcome" );
+ 
+};
+</code>
+    </pre>
+<br>
+<p>Pero este código no empieza hasta que todas las imágenes están cargadas, incluidos banners. Para cargar el código tan pronto como el document está listo se usa mejor la sentencia de jQuery más famosa.</p>
+<br>
+<pre>
+        <code>
+$( document ).ready(function() {
+ 
+    // Your code here.
+ 
+});
+</code>
+    </pre>
+<br>
+<p>Dentro puedes poner el código que quieras</p>
+<br>
+<pre>
+        <code>
+$( document ).ready(function() {
+ 
+    $( "a" ).click(function( event ) {
+ 
+        alert( "As you can see, the link no longer took you to jquery.com" );
+ 
+        event.preventDefault();
+ 
+    });
+ 
+});
+</code>
+    </pre>
+<br>
+<h3>$ vs $()</h3>
+<p>Por ahora solo habremos visto métodos que son llamados como un objeto jQuery. Por ejemplo:</p><br>
+<pre><code>
+$( "h1" ).remove();
+</code></pre><br>
+<p>
+La mayoría de métodos de jQuery son llamados objetos en jQuery como se muestra arriba. Estos métodos se dice que son parte de namespace $.fn, o del “jQuery prototype”, y es mejor pensar en ellos como métodos objeto de jQuery.
+Aunque, existen numerosos métodos que no actúan como una selección; estos métodos son parte del namespace de jQuery y es mejor pensar en ellos como métodos  del núcleo de jQuery.
+Esta distinción puede ser muy confusa para usuarios nuevos de jQuery, pero solo debes de recordar:</p>
+<ul>
+<li>Los métodos llamados “selecciones” en jQuery son parte del namespace $.fn y automáticamente reciben y devuelven la selección como “this”.</li>
+<li>Los métodos en el namespace “$” son generalmente métodos de “utility-type” y no funcionan con “selecciones”; No se pasan automáticamente como argumentos y valor devuelto puede variar.</li>
+</ul>
+
+
+<h3>Añadir o eliminar una clase</h3>
+Una tarea bastante básica es añadir o eliminar una clase de un elemento.
+Para hacerlo solamente debemos de utilizar el método addClass() o removeClass().
+<br>
+    <pre>
+        <code>
+$( "a" ).addClass( "test" );
+$( "a" ).removeClass( "test" );
+</code>
+    </pre>
+<br>
+<h3>Efectos especiales</h3>
+<p>jQuery también puede crear algunos efectos para lucir tu web. Por ejemplo este para esconder un elemento.</p>
+<br>
+    <pre>
+        <code>
+$( "a" ).click(function( event ) {
+ 
+    event.preventDefault();
+ 
+    $( this ).hide( "slow" );
+ 
+});
+</code>
+    </pre>
+<br>
+<p>El enlace se esconde lentamente cuando es pulsado.</p>
+<h3>Callbacks</h3>
+<p>Callback es una función que es pasada como argumento a otra función y es ejecutada después de que la función padre haya sido completada. Callbacks son especiales debido a que esperan pacientemente a ser ejecutadas hasta que su padre finaliza.
+Para utilizar callbacks, es importante saber cómo realizarlo.</p><br>
+<br>
+    <pre>
+        <code>
+$.get( "myhtmlpage.html", myCallBack );
+</code>
+    </pre>
+<br>
+<p>
+Cuando $get() termina, ejecuta la función llamada myCallBack(). Es interesante observar que el segundo parámetro es el nombre de la función (pero no como string, y sin paréntesis).</p>
+<h4>Callbacks con parámetros</h4>
+<p>La ejecución de funciones callbacks con parámetros puede ser problemática.</p>
+
+<h5>MAL</h5>
+<p>Este código no funcionará</p>
+<br>
+    <pre>
+        <code>
+$.get( "myhtmlpage.html", myCallBack( param1, param2 ) );
+</code>
+    </pre>
+<br>
+<p>La razón es que este códgio ejecuta myCallBack( param1, param2 ) inmediatamente y entonces devuelve el return value de myCallBack() como un segundo parámetro de $.get().
+Nosotros queremos pasar myCallBack() como algo entero, por ello se hace la siguiente manera.</p>
+<h5>BIEN</h5>
+<p>Para crear una CallBack con parámetros usamos una función anónima como encapsulador. La función va a llamar a myCallBack() con los valores que queremos.</p>
+<br>
+    <pre>
+        <code>
+$.get( "myhtmlpage.html", function() {
+ 
+    myCallBack( param1, param2 );
+ 
+});
+</code>
+    </pre>
+<br>
+
+</div>
+
+{% endblock %}

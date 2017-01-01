@@ -63,5 +63,12 @@ class AppController extends Controller
         return $this->render('main/effects.html.twig');
     }
     
+    /**
+     * @Route("/tutorials/introduction", name="intro")
+     */
+    public function introduction(){
+        return $this->render('tutorial/introduction.html.twig');
+    }
+    
     
 }
