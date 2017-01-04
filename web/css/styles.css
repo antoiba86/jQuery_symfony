@@ -120,9 +120,18 @@ section {
     margin-bottom:2.5%;
 }
 
+.title-tutorial {
+    text-decoration:underline;
+}
+
+.element-hidden {
+    display:none;
+}
+
 /***********FOOTER***********************/
 
 footer p {
+    clear:both;
     text-align: center;
     color:#1873da;
     text-transform: uppercase;

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>
-    Cómo Funciona jQuery
-</h1>
-<div>
-    <h3>Lo básico</h3>
-    <p>Estp es un pequeño tutorial echo para ayudarte a empezar usando jQuery. Crea una página html si no la tienes ya.
+<div class="col-md-10 col-md-offset-1">
+    <h1>
+        Cómo Funciona jQuery
+    </h1>
+    <h3 class="title-tutorial">Lo básico</h3>
+    <p>Esto es un pequeño tutorial echo para ayudarte a empezar usando jQuery. Crea una página html si no la tienes ya.
     </p>
     <br>
     <pre>
@@ -30,7 +30,8 @@
     </pre>
     <br>
 <p>El atributo src en el script debe de apuntar a un archivo jQuery, ya sea los que están en internet o una copia que se haya descargado de la página de jQuery.</p>
-<h3>Esperar a que el documento esté listo</h3>
+<br>
+<h3 class="title-tutorial">$(document).ready</h3>
 <p>Para asegurarse que el navegador ha cargado el document antes de lanzar el código, una buena práctica es encapsular el código en una función onload. </p>
 <br>
 <pre>
@@ -73,7 +74,26 @@ $( document ).ready(function() {
 </code>
     </pre>
 <br>
-<h3>$ vs $()</h3>
+<h3 class="title-tutorial">El Objeto $()</h3>
+<p>La estructura basica de cualquier sentencia en JQuery es la misma que la de un lenguaje orientado a objetos</p>
+<br>
+<pre><code>
+$objeto.metodo
+</code></pre><br>
+<p>La función más importante de JQuery es la función $(), con ella podemos crear un objeto JQuery a partir de cualquier elemento del árbol DOM. Una vez hemos transformado un nodo del árbol DOM en un objeto JQuery podremos utilizar "todos" los métodos definidos en la librería JQuery</p>
+<ul>
+    <li>$("#id_name") crea un objeto jQuery con el que manipular el elemento con el id "id_name".</li>
+    <li>$(".class_name") crea un objeto jQuery con el que manipular los elementos con la class "class_name".</li>
+    <li>$("element") crea un objeto jQuery con el nombre de los elementos seleccionados.</li>
+</ul>
+<br>
+<pre><code>
+&lt;div id="id_name"&gt;
+       &lt;div class="class_name"&gt;Barcelona &lt;/div&gt;
+       &lt;div class="class_name"&gt;Delantero &lt;/div&gt; 
+&lt;/div&gt;
+</code></pre><br>
+<h3 class="title-tutorial">$ vs $()</h3>
 <p>Por ahora solo habremos visto métodos que son llamados como un objeto jQuery. Por ejemplo:</p><br>
 <pre><code>
 $( "h1" ).remove();
@@ -88,10 +108,10 @@ Esta distinción puede ser muy confusa para usuarios nuevos de jQuery, pero solo
 </ul>
 
 
-<h3>Añadir o eliminar una clase</h3>
+<h3 class="title-tutorial">Añadir o eliminar una clase</h3>
 Una tarea bastante básica es añadir o eliminar una clase de un elemento.
 Para hacerlo solamente debemos de utilizar el método addClass() o removeClass().
-<br>
+<br><br>
     <pre>
         <code>
 $( "a" ).addClass( "test" );
@@ -99,7 +119,7 @@ $( "a" ).removeClass( "test" );
 </code>
     </pre>
 <br>
-<h3>Efectos especiales</h3>
+<h3 class="title-tutorial">Efectos especiales</h3>
 <p>jQuery también puede crear algunos efectos para lucir tu web. Por ejemplo este para esconder un elemento.</p>
 <br>
     <pre>
@@ -115,7 +135,7 @@ $( "a" ).click(function( event ) {
     </pre>
 <br>
 <p>El enlace se esconde lentamente cuando es pulsado.</p>
-<h3>Callbacks</h3>
+<h3 class="title-tutorial">Callbacks</h3>
 <p>Callback es una función que es pasada como argumento a otra función y es ejecutada después de que la función padre haya sido completada. Callbacks son especiales debido a que esperan pacientemente a ser ejecutadas hasta que su padre finaliza.
 Para utilizar callbacks, es importante saber cómo realizarlo.</p><br>
 <br>

@@ -1,5 +1,202 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Hello selectors</p>
+    <div class="col-md-10 col-md-offset-1">
+        <h1>
+            Selecionando Elementos
+        </h1>
+        <p>
+            El más básico concepto de jQuery  es “seleccionar algunos elementos y hacer algo con ellos.” jQuery soporta la mayoría de selectores de CSS3, así como algunos que no son estándar. Para una competa referencia de los selectores, ve al siguiente enlace <a href="http://api.jquery.com/category/selectors/">Selectors documentation on api.jquery.com</a>.
+        </p>
+        <p>Para seleccionar elementos en jQuery, realmente el mayor impedimento es tu imaginación. La potencia que tiene jQuery permite seleccionar elementos de una manera bastante creativa y potente.
+            Se puede seleccionar por medio de id, clase, filtrando, se puede seleccionar por atributo, etc.
+            A continuación vamos a ver en detalle como hacerlo.
+        </p>
+        <h3>Seleccionando elementos por Id</h3>
+        <br>
+    <pre>
+        <code>
+$( "#myId" );
+            </code>
+    </pre>
+    <br>
+    <h3>Seleccionando elementos por Clase</h3>
+        <br>
+    <pre>
+        <code>
+$( ".myClass" );
+            </code>
+    </pre>
+    <br>
+    <h3>Seleccionando elementos por Atributo</h3>
+        <br>
+    <pre>
+        <code>
+$( "input[name='first_name']" );
+
+            </code>
+    </pre>
+    <br>
+    <h3>Seleccionando elementos por Combinación</h3>
+        <br>
+    <pre>
+        <code>
+$( "#contents ul.people li" );
+            </code>
+    </pre>
+    <br>
+    <h3>Seleccionando varios elementos separados por coma</h3>
+        <br>
+    <pre>
+        <code>
+$( "div.myClass, ul.people" );
+            </code>
+    </pre>
+    <br>
+    <h3>Pseudo selectores</h3>
+    <p>Existen numerosas formas de seleccionar elementos que no son parte de las especificaciones de CSS.
+        Por ello vamos a proceder a explicar algunas de ellas.
+    </p>
+    <h4>:odd y :even Selector</h4>
+    <p>Se seleccionan los elementos impares de la página web. Al empezar desde la base de 0, se seleccionará el segundo elemento, el cuarto, etc.
+Como :odd no es parte de CSS, se debe de usar un selector CSS para usarlo de manera más eficiente. Se seleccionan los elementos en el orden de aparición en el documento.
+    </p>
+    <button type="button" class="btn btn-success odd-li">Elementos li:odd</button>
+    <button type="button" class="btn btn-primary even-li">Elementos li:even</button>
+    <button type="button" class="btn btn-success odd-p">Elementos p:odd</button>
+    <button type="button" class="btn btn-primary even-p">Elementos p:even</button>
+    
+    <button type="button" class="btn btn-primary clear-oddeven">Limpiar estilos</button>
+        <br>
+    <pre>
+        <code>
+$(function() {
+   $(".odd-li").click(function() {
+       $("p, li").css("background-color", "transparent");
+       $("li:odd").css( "background-color", "red"); 
+   });
+   $(".odd-p").click(function() {
+       $("p, li").css("background-color", "transparent");
+       $("p:odd").css( "background-color", "red"); 
+   });
+   $(".even-li").click(function() {
+       $("p, li").css("background-color", "transparent");
+       $("li:even").css( "background-color", "red"); 
+   });
+   $(".even-p").click(function() {
+       $("p, li").css("background-color", "transparent");
+       $("p:even").css( "background-color", "red"); 
+   });
+   $(".clear-oddeven").click(function() {
+       $("p, li").css("background-color", "transparent");
+   });
+});
+        </code>
+    </pre>
+    <br>
+    
+    <h4>Selectores :first, :eq, :gt, :lt, :slice</h4>
+    Además de seleccionar elementos pares o impares, se pueden crear selecciones de otro tipo.
+    <ol start="0">
+        <li class="seleccion">Como elegir el primer elemento usando :first.</li>
+        <li class="seleccion">Seleccionar el elemento número x usando :eq.</li>
+        <li class="seleccion">Seleccionar los elementos mayores que x usando :gt.</li>
+        <li class="seleccion">Seleccionar los elementos menores que x usando :lt.</li>
+        <li class="seleccion">O seleccionar los elementos entre dos números usando :slice.</li>
+    </ol>
+    Número de la lista <input type="text" name="number" value="0" id="valorSelect"><br><br>
+    Final slice<input type="text" name="number" value="5" id="valorSelect2"><br><br>
+    <button type="button" class="btn btn-success first-li">Elemento first</button>
+    <button type="button" class="btn btn-primary eq-li">Elementos eq()</button>
+    <button type="button" class="btn btn-success gt-li">Elementos gt()</button>
+    <button type="button" class="btn btn-primary lt-li">Elementos lt()</button>
+    <button type="button" class="btn btn-primary slice-li">Elementos slice()</button>
+    <button type="button" class="btn btn-primary clear-li">Limpiar estilos</button>
+    <br>
+    <pre>
+        <code>
+$(function() {
+   $(".first-li").click(function() {
+       $(".seleccion").css("background-color", "transparent");
+       $(".seleccion:first").css( "background-color", "red"); 
+   });
+   $(".eq-li").click(function() {
+       var valor = $("#valorSelect").val();
+       $(".seleccion").css("background-color", "transparent");
+       $(".seleccion:eq("+valor+")").css( "background-color", "red"); 
+   });
+   $(".gt-li").click(function() {
+       var valor = $("#valorSelect").val();
+       $(".seleccion").css("background-color", "transparent");
+       $(".seleccion:gt("+valor+")").css( "background-color", "red"); 
+   });
+   $(".lt-li").click(function() {
+       var valor = $("#valorSelect").val();
+       $(".seleccion").css("background-color", "transparent");
+       $(".seleccion:lt("+valor+")").css( "background-color", "red"); 
+   });
+   $(".slice-li").click(function() {
+       var valor = $("#valorSelect").val();
+       var valor2 = $("#valorSelect2").val();
+       $(".seleccion").css("background-color", "transparent");
+       $(".seleccion").slice(valor, valor2).css( "background-color", "red"); 
+   });
+   $(".clear-li").click(function() {
+       $(".seleccion").css("background-color", "transparent");
+   });
+});
+        </code>
+    </pre>
+    <br>
+    <h4>Visible, Hidden y Animated</h4>
+    <p> Al usar los pseudo-selectores visible y hidden, jQuery comprueba la actual visibilidad del element y no la propiedad del CSS. 
+        jQuery mira si la altura y anchura física del elemento en la página son mayores de cero.
+        Aunque esto no funciona con los elementos <tr> y por eso si que comprueba la propiedad CSS display en estos casos y lo considera hidden si la propiedad está en none.
+    </p>
+    <ul>
+        <li>Se consideran “hidden” elementos con display none.</li>
+        <li>Elementos de formularios type=”hidden”.</li>
+        <li>Elementos con width y height igual a 0.</li>
+        <li>Cuando su ancestro está hidden.</li>
+    </ul>
+    <p>Los elementos con “visibility:hidden” u “opacitiy:0” son considerados visibles.</p>
+
+    <ol start="1">
+        <li class="seleccion2">A mi si me ves.</li>
+        <li class="seleccion2 element-hidden">A mi no.</li>
+        <li class="seleccion2">Yo no me escondo.</li>
+        <li class="seleccion2 element-hidden">Yo si lo estoy.</li>
+    </ol>
+    
+    <button type="button" class="btn btn-success tell-hidden">Elementos escondidos</button>
+    <button type="button" class="btn btn-primary show-hidden">Mostrar</button>
+    <button type="button" class="btn btn-primary all-hidden">Esconder</button>
+    <button type="button" class="btn btn-primary clear-li">Limpiar estilos</button>
+    <br>
+    <pre>
+        <code>
+$(function() {
+   $(".tell-hidden").click(function() {
+       var num = $(".seleccion2:hidden");
+       alert("Los elementos escondidos son " + num.length);
+   });
+   $(".show-hidden").click(function() {
+       $(".seleccion2:hidden").show();
+   });
+   $(".all-hidden").click(function() {
+       $(".seleccion2").hide();
+   });
+   $(".clear-li").click(function() {
+       $(".seleccion2").show();
+       $(".element-hidden").hide();
+   });
+});
+        </code>
+    </pre>
+    <br>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/selectores.js') }}"></script>
 {% endblock %}
