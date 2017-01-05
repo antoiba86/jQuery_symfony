@@ -171,7 +171,8 @@ $(function() {
     <button type="button" class="btn btn-success tell-hidden">Elementos escondidos</button>
     <button type="button" class="btn btn-primary show-hidden">Mostrar</button>
     <button type="button" class="btn btn-primary all-hidden">Esconder</button>
-    <button type="button" class="btn btn-primary clear-li">Limpiar estilos</button>
+    <button type="button" class="btn btn-primary clear-li2">Limpiar estilos</button>
+    <br>
     <br>
     <pre>
         <code>
@@ -186,7 +187,7 @@ $(function() {
    $(".all-hidden").click(function() {
        $(".seleccion2").hide();
    });
-   $(".clear-li").click(function() {
+   $(".clear-li2").click(function() {
        $(".seleccion2").show();
        $(".element-hidden").hide();
    });
@@ -194,6 +195,88 @@ $(function() {
         </code>
     </pre>
     <br>
+    <h3>Eligiendo los selectores</h3>
+    <p>Elegir un buen selector es una manera de mejorar el rendimiento de JavaScript. Si se especifica mucho puede ser malo. Por ejemplo, un selector como “#myTable thead tr th.special” es malgastar recursos si puedes usar “#myTable th.special”.
+    </p>
+    <h4>¿Cómo saber si un selector contiene un elemento?</h4>
+    <p>Para comprobar si un selector tiene algún elemento lo mejor es usar la propeidad ".length".
+    Esta propiedad dice cuantos elementos se han seleccionado. 
+    Si la respuesta es 0, la propiedad “.length” lo evaluará como “false” y será usado como un valor booleano.</p>
+    <br>
+    <pre>
+        <code>
+if ( $( "div.foo" ).length ) {
+    ...
+}
+        </code>
+    </pre>
+    <br>
+    <h4>Guardando las selecciones</h4>
+    <p>Para salvar una selección es tan fácil como igualar una variable al selector.
+        Una vez salvado puedes manipularlas como un objeto jQuery normal.
+    </p>
+    <br>
+    <pre>
+        <code>
+var divs = $( "div" );
+        </code>
+    </pre>
+    <br>
+    <h4>Refinando y filtrando la selección</h4>
+    <p>Se usan para mejorar la búsqueda de los elementos en la página</p>
+    <h5>Selectores :has() y :not()</h5>
+    <p>Selecciona elementos que contienen al menos un elemento que cuadra con el 
+        selector especificado. En los navegadores modernos es mejor usar 
+        $( "your-pure-css-selector" ).has( "selector/DOMElement" ).
+    </p>
+    <ul>
+        <div id="padre-div">Soy un div y tengo un elemento li <li id="has-father">Yo tengo un padre div</li></div>
+        <li>Yo no lo tengo y no tengo ningún id</li>
+        
+    </ul>
+    <button type="button" class="btn btn-success div-has">Elemento tiene padre "padre-div"</button>
+    <button type="button" class="btn btn-primary not-has">Elemento no tiene id "has-father"</button>
+    <button type="button" class="btn btn-primary clear-li3">Limpiar estilos</button>
+    <br><br>
+    <pre>
+        <code>
+$(function() {
+   $(".div-has").click(function() {
+       $("#padre-div").has("li").css("background", "red");
+   });
+   $(".not-has").click(function() {
+       $( "li" ).not( "#has-father").css("background", "red");;  
+   });
+   $(".clear-li3").click(function() {
+       $("li").css("background-color", "transparent");
+       $("#padre-div").css("background-color", "transparent");
+   });
+});
+        </code>
+    </pre>
+    <br>
+    <h5>Hermanos, padres, vecinos...</h5>
+    <p>jQuery nos permite numerosas formas de selección de los elementos incluídos en la página web.
+        La forma en que los seleccionéis solo depende de vosotros. 
+        Se puede buscar el padre de un elemento, los hijos, el primer hijo, el último, etc.
+        Como veréis hay una gran variedad de selectores.
+    </p>
+    <div id="star-wars">
+        <div><img id="shmi" src="{{ asset('images/starwars/Shmi.jpg') }}">
+        <div id="darth-vader">
+            <img id="darth-vader-img" src="{{ asset('images/starwars/darth-vader.jpeg') }}">
+            <div id="luke">
+                <img src="{{ asset('images/starwars/lukesky.jpg') }}">
+            </div>
+            <div id="leia">
+                <img src="{{ asset('images/starwars/princess-leia-organa.jpg') }}">
+                <div id="kylo">
+                    <img src="{{ asset('images/starwars/kylo.jpg') }}">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

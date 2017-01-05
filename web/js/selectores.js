@@ -62,8 +62,21 @@ $(function() {
    $(".all-hidden").click(function() {
        $(".seleccion2").hide();
    });
-   $(".clear-li").click(function() {
+   $(".clear-li2").click(function() {
        $(".seleccion2").show();
        $(".element-hidden").hide();
+   });
+});
+
+$(function() {
+   $(".div-has").click(function() {
+       $("#padre-div").has("li").css("background", "red");
+   });
+   $(".not-has").click(function() {
+       $( "li" ).not( "#has-father").css("background", "red");;  
+   });
+   $(".clear-li3").click(function() {
+       $("li").css("background-color", "transparent");
+       $("#padre-div").css("background-color", "transparent");
    });
 });

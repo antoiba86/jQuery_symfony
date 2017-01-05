@@ -128,6 +128,40 @@ section {
     display:none;
 }
 
+#padre-div {
+    border: 2px solid black;
+}
+
+#star-wars {
+    text-align:center;
+   
+}
+
+#star-wars img {
+    height:150px;
+     margin-top: 2%;
+     border-radius: 20px;
+}
+
+#darth-vader-img {
+    display:block;
+    margin-left: 35%;
+}
+
+#luke {
+    display:inline;
+    margin-right: 2%;
+}
+
+#leia {
+    display: inline-block;
+    margin-left:2%;
+}
+
+#kylo img {
+    display:block
+}
+
 /***********FOOTER***********************/
 
 footer p {
