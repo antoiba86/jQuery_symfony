@@ -262,21 +262,263 @@ $(function() {
         Como veréis hay una gran variedad de selectores.
     </p>
     <div id="star-wars">
-        <div><img id="shmi" src="{{ asset('images/starwars/Shmi.jpg') }}">
-        <div id="darth-vader">
-            <img id="darth-vader-img" src="{{ asset('images/starwars/darth-vader.jpeg') }}">
-            <div id="luke">
+        <div id="shmi">
+            <img id="shmi-img" class="ancestor" src="{{ asset('images/starwars/Shmi.jpg') }}">
+            <div id="darth-vader" class="shmi-child">
+                <img id="darth-vader-img" class="ancestor" src="{{ asset('images/starwars/darth-vader.jpeg') }}">
+                <div id="luke" class="vader-child">
+                    <img src="{{ asset('images/starwars/lukesky.jpg') }}">
+                </div>
+                <div id="leia" class="vader-child">
+                    <img class="ancestor" src="{{ asset('images/starwars/princess-leia-organa.jpg') }}">
+                    <div id="kylo" class="leia-child">
+                        <img src="{{ asset('images/starwars/kylo.jpg') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-success shmi-son">Hijos de Shmi</button>
+    <button type="button" class="btn btn-success shmi-descendant">Descendientes de Shmi</button>
+    <button type="button" class="btn btn-primary vader-children">Hijos de Vader</button>
+    <button type="button" class="btn btn-success vader-descendant">Descendientes de Vader</button>
+    <button type="button" class="btn btn-success luke-siblings">Hermano de Luke</button>
+    <button type="button" class="btn btn-primary leia-son">Hijos de Leia Organa</button>
+    <button type="button" class="btn btn-primary kylo-mother">Madre de Kylo</button>
+    <button type="button" class="btn btn-primary kylo-ancestor">Ancestros de Kylo</button>
+    <button type="button" class="btn btn-primary clear-li4">Limpiar estilos</button>
+    <br><br>
+    <br>
+    <pre>
+        <code>
+<div id="star-wars">
+    <div id="shmi">
+        <img id="shmi-img" class="ancestor" src="{{ asset('images/starwars/Shmi.jpg') }}">
+        <div id="darth-vader" class="shmi-child">
+            <img id="darth-vader-img" class="ancestor" src="{{ asset('images/starwars/darth-vader.jpeg') }}">
+            <div id="luke" class="vader-child">
                 <img src="{{ asset('images/starwars/lukesky.jpg') }}">
             </div>
-            <div id="leia">
-                <img src="{{ asset('images/starwars/princess-leia-organa.jpg') }}">
-                <div id="kylo">
+            <div id="leia" class="vader-child">
+                <img class="ancestor" src="{{ asset('images/starwars/princess-leia-organa.jpg') }}">
+                <div id="kylo" class="leia-child">
                     <img src="{{ asset('images/starwars/kylo.jpg') }}">
                 </div>
             </div>
         </div>
-        </div>
     </div>
+</div>
+        </code>
+    </pre>
+    <br>
+    <br>
+    <pre>
+        <code>
+$(function() {
+   $(".shmi-son").click(function() {
+       clear4();
+       $( ".shmi-child>img" ).css( "border", "3px solid red" );
+   });
+   $(".vader-children").click(function() {
+       clear4();
+       $( ".vader-child>img" ).css( "border", "3px solid red" );
+   });
+   $(".leia-son").click(function() {
+       clear4();
+       $( ".leia-child>img" ).css( "border", "3px solid red" );
+   });
+   $(".shmi-descendant").click(function() {
+       clear4();
+       $( ".shmi-child img" ).css( "border", "3px solid red" );
+   });
+   $(".vader-descendant").click(function() {
+       clear4();
+       $( ".vader-child img" ).css( "border", "3px solid red" );
+   });
+   $(".luke-siblings").click(function() {
+       clear4();
+       $( "#luke ~ div" ).find(".ancestor").css( "border", "3px solid red" );
+   });
+   $(".kylo-mother").click(function() {
+       clear4();
+       $( "#kylo" ).parent().find(".ancestor").css( "border", "3px solid red" );
+   });
+   $(".kylo-ancestor").click(clear4,function() {
+       clear4();
+       $( "#kylo img" ).parentsUntil("#star-wars").find( ".ancestor" ).css( "border", "3px solid red" );
+   });
+   $(".clear-li4").click(clear4);
+});
+
+function clear4() {
+    $("#star-wars img").css("border", "3px transparent");
+    $("#star-wars div").css("border", "3px transparent");
+}
+        </code>
+    </pre>
+    <br>
+    <h4>Seleccionando Elementos de un Formulario</h4>
+    <p>jQuery permite usar pseudo-selectores para encontrar elementos de un formulario. 
+        Hay muchos problemas para encontrar un tipo de elemento 
+        basado en su estado o tipo mediante los selectores CSS estándar.
+    </p>
+    <h5>:checked</h5>
+    <p>“:checked” pseudo-selector funciona con <span>checkboxes</span>, 
+        <span>radio-buttons</span> y <span>selects</span>.</p>
+    <br>
+    <pre>
+        <code>
+$( "form :checked" );
+        </code>
+    </pre>
+    <br>
+    <h5>:disabled</h5>
+    <p>El pseudo-selector “:disabled” funciona con cualquier “&lt;input&gt;”
+        element con el atributo “disabled”. Para conseguir el mejor rendimiento, 
+        es mejor usar “:disabled” junto a un “.filter(“:disabled”)” o usar 
+        después un pseudo-selector junto a un tag name.
+    </p>
+    <br>
+    <pre>
+        <code>
+$( "form:disabled" );
+        </code>
+    </pre>
+    <br>
+    <h5>:enabled</h5>
+    <p>Es lo contrario de “:disabled”. Selecciona elementos que no tengan el atributo “disabled”.</p>
+    <br>
+    <pre>
+        <code>
+$( "form:enabled" );
+        </code>
+    </pre>
+    <br>
+    <h5>:input</h5>
+    <p>Usar el selector “:input” permite seleccionar todos los elementos “&lt;input&gt;”, 
+        “&lt;itextarea&gt;”, “&lt;select&gt;” y “&lt;button&gt;”.
+    </p>
+    <br>
+    <pre>
+        <code>
+$( "form:input" );
+        </code>
+    </pre>
+    <br>
+    <h5>:selected</h5>
+    <p>Usar el pseudo-selector “:selected”  se enfoca en cualquier elemento 
+        seleccionado en elementos “&lt ;option&gt;”.
+    </p>
+    <br>
+    <pre>
+        <code>
+$( "form:selected" );
+        </code>
+    </pre>
+    <br>
+    <div><form id="form-prueba">
+      <input type="button" value="Input Button">
+      <input type="checkbox">
+      <input type="file">
+      <input type="hidden">
+      <input type="image">
+      <input type="password">
+      <input type="radio" name="asdf">
+      <input type="radio" name="asdf">
+      <input type="reset">
+      <input type="submit">
+      <input type="text">
+      <select>
+        <option>Option</option>
+      </select>
+      <textarea></textarea>
+      <button>Button</button>
+        </form></div><br>
+    <button type="button" class="btn btn-success input-type">Número de inputs</button>
+    <button type="button" class="btn btn-success pass-type">Tipo Password</button>
+    <button type="button" class="btn btn-primary radio-type">Tipo Radio</button>
+    <button type="button" class="btn btn-success reset-type">Tipo Reset</button>
+    <button type="button" class="btn btn-success submit-type">Tipo Submit</button>
+    <button type="button" class="btn btn-primary text-type">Tipo Text</button>
+    <button type="button" class="btn btn-primary checkbox-type">Tipo Checkbox</button>
+    <button type="button" class="btn btn-primary button-type">Tipo Button</button>
+    <div id="form-result"></div>
+    <br>
+    <pre>
+        <code>
+$(function() {
+   $(".input-type").click(function() {
+        var allInputs = $( ":input");
+        $( "#form-result" ).text( "Encontrados " + allInputs.length + " inputs." );
+   });
+   $(".pass-type").click(function() {
+       var input = $( "input:password" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'password'." )
+        .css( "color", "red" );
+   });
+   $(".reset-type").click(function() {
+       var input = $( "input:reset" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'reset'." )
+        .css( "color", "red" );
+   });
+   $(".radio-type").click(function() {
+       var input = $( "input:radio" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'radiobutton'." )
+        .css( "color", "red" );
+   });
+   $(".submit-type").click(function() {
+       var input = $( "input:submit" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'submit'." )
+        .css( "color", "red" );
+   });
+   $(".text-type").click(function() {
+       var input = $( "input:text" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'text'." )
+        .css( "color", "red" );
+   });
+   $(".checkbox-type").click(function() {
+       var input = $( "input:checkbox" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'checkbox'." )
+        .css( "color", "red" );
+   });
+   $(".button-type").click(function() {
+       var input = $( "form input:button" ).css({
+        background: "yellow",
+        border: "3px red solid"
+      });
+      $( "#form-result" )
+        .text( "Hay " + input.length + " input de tipo 'button'." )
+        .css( "color", "red" );
+   });
+});
+        </code>
+    </pre>
+    <br>
+    <h4>find()</h4>
 {% endblock %}
 
 {% block javascripts %}
