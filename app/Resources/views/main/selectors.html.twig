@@ -291,23 +291,23 @@ $(function() {
     <br>
     <pre>
         <code>
-<div id="star-wars">
-    <div id="shmi">
-        <img id="shmi-img" class="ancestor" src="{{ asset('images/starwars/Shmi.jpg') }}">
-        <div id="darth-vader" class="shmi-child">
-            <img id="darth-vader-img" class="ancestor" src="{{ asset('images/starwars/darth-vader.jpeg') }}">
-            <div id="luke" class="vader-child">
-                <img src="{{ asset('images/starwars/lukesky.jpg') }}">
-            </div>
-            <div id="leia" class="vader-child">
-                <img class="ancestor" src="{{ asset('images/starwars/princess-leia-organa.jpg') }}">
-                <div id="kylo" class="leia-child">
-                    <img src="{{ asset('images/starwars/kylo.jpg') }}">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+&lt;div id="star-wars"&gt;
+    &lt;div id="shmi"&gt;
+        &lt;img id="shmi-img" class="ancestor" src="{{ asset('images/starwars/Shmi.jpg') }}"&gt;
+        &lt;div id="darth-vader" class="shmi-child"&gt;
+            &lt;img id="darth-vader-img" class="ancestor" src="{{ asset('images/starwars/darth-vader.jpeg') }}"&gt;
+            &lt;div id="luke" class="vader-child"&gt;
+                &lt;img src="{{ asset('images/starwars/lukesky.jpg') }}"&gt;
+            &lt;/div&gt;
+            &lt;div id="leia" class="vader-child"&gt;
+                &lt;img class="ancestor" src="{{ asset('images/starwars/princess-leia-organa.jpg') }}"&gt;
+                &lt;div id="kylo" class="leia-child"&gt;
+                    &lt;img src="{{ asset('images/starwars/kylo.jpg') }}"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
         </code>
     </pre>
     <br>
@@ -519,6 +519,9 @@ $(function() {
     </pre>
     <br>
     <h4>find()</h4>
+    
+    <h4>filter()</h4>
+    
 {% endblock %}
 
 {% block javascripts %}
