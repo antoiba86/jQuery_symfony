@@ -1,5 +1,137 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Hello cheatsheet</p>
+    <div class="col-md-10 col-md-offset-1">
+        <h1>Eventos con jQuery</h1>
+        <p>jQuery facilita la forma de interactuar con los elementos dentro de 
+            una página facilitando el uso de los eventos de forma bastante intuitiva.
+            Podéis para ello consultar la <a href="http://api.jquery.com/category/events/">documentación oficial</a>. 
+        </p>
+        <p>
+            Podéis también ir a la <a href="{{ path('cheatsheet') }}#events">sección de eventos</a> 
+            en la página de Cheatsheet para ver el tipo de eventos que existen 
+            y como usarlos además de este tutorial.
+        </p>
+        <p>Las páginas web actuales son interactivas, es decir, los usuarios 
+            pueden realizar un gran número de acciones y los navegadores pueden
+            capturarlas en forma de eventos. Mover el ratón por la página, hacer
+            click en un elemento o escribir en un input text. Pero también hay 
+            otro gran número de eventos que ocurren sin intervención del usuario, 
+            como cuando la página es cargada, cuando un vídeo se empieza a 
+            reproducir o termina, etc. En cualquier momento en que ocurre algo
+            importante en la página, un evento es disparado, y los navegadores 
+            capturan el momento en que ha pasado. Esto permite a los desarrolladores 
+            escuchar a este tipo de eventos y reaccionar acorde a ello.
+        </p>
+        <h3>Eventos Básicos de jQuery</h3>
+        <p>
+            jQuery ofrece métodos para la mayoría de eventos nativos de los 
+            navegadores. Estos métodos que incluyen “.click()”, “.focus()” o 
+            “.mouseenter()” son abreviaturas para el método “.on ()” de jQuery. 
+            El método on es útil para vincular el mismo controlador de la función a varios eventos,
+            cuando se desea proporcionar datos a los controladores de eventos, cuando se trabaja 
+            con eventos personalizados o cuando se desea pasar un objeto de varios
+            eventos y controladores.
+        </p>
+        <p id="especial">Este párrafo es especial, no lo toques mucho.</p>
+        <pre>
+        <code>
+$( "#especial" ).click(function() {
+    alert( "Has pulsado sobre un párrafo" );
+});
+
+$( "#especial" ).on( "click", function() {
+    alert( "Has hecho click sobre un párrafo" );
+});
+            </code>
+        </pre>
+        <br>
+        <h3>Un Elemento con múltiples Eventos</h3>
+        <p>
+            Para que elemento tenga asociado varios eventos, existen varias formas 
+            de conseguirlo. Aunque la más fácil y efectivas es usar ".on()".
+        </p>
+        <p id="no-especial">Este párrafo no es especial pero haz click o pasa por encima 
+            para comprobarlo
+        </p>
+        <pre>
+        <code>
+$( "#no-especial" ).click(holaMundo).mouseenter(holaMundo);
+
+function holaMundo() {
+    alert("Hola Mundo");
+}
+            
+$( "#no-especial" ).on( "click mouseenter", function() {
+    alert( "Has hecho click o has pasado por encima de un párrafo" );
+});
+            </code>
+        </pre>
+        <br>
+        <p>También se puede asignar eventos con diferentes funciones</p>
+        <p id="pulsar-p">Púlsame o pasa por encima</p>
+        <pre>
+        <code>
+$( "#pulsar-p" ).on({
+    mouseover: function() { 
+        alert( "Has pasado por encima de un párrafo" );
+    },
+    click: function(event) { 
+        alert( "Has hecho click sobre un párrafo" );
+        event.stopPropagation();
+    },
+    mouseleave: function() {
+        alert("Has abandonado el párrafo");
+    }
+});
+            </code>
+        </pre>
+        <br>
+        <h3>Pasar parámetros al Evento</h3>
+        <p>Puedes pasar datos de manera fácil usando "on()".</p>
+        <p id="hola">Párrafo dice hola</p>
+        <p id="adios">Párrafo dice adios</p>
+        <pre>
+        <code>
+$( "#hola" ).on( "click", {
+    foo: "hola"
+}, function( event ) {
+    alert( "Párrafo hola dice: " + event.data.foo );
+});
+
+$( "#adios" ).on( "click", {
+    foo: "adios"
+}, function( event ) {
+    alert( "Párrafo adios dice: " + event.data.foo );
+});
+            </code>
+        </pre>
+        <br>
+        
+        <h3>Añadiendo Eventos a Nuevos Elementos de la Página</h3>
+        <p>Es importante tener en cuenta que .on () sólo puede crear listeners 
+            de eventos en elementos que existen al momento de configurar los 
+            listeners. Elementos similares creados después de que se establezcan 
+            los listeners de eventos no capturarán automáticamente los eventos 
+            que se hayan configurado anteriormente. Por ejemplo:
+        </p>
+        <pre>
+        <code>
+$( "#especial" ).click(function() {
+    alert( "Has pulsado sobre un párrafo" );
+});
+
+$( "#especial" ).on( "click", function() {
+    alert( "Has hecho click sobre un párrafo" );
+});
+            </code>
+        </pre>
+        <br>
+    
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/events.js') }}"></script>
 {% endblock %}
