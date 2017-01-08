@@ -1,5 +1,233 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Hello cheatsheet</p>
+    <div class="col-md-10 col-md-offset-1">
+        <h1>Manipulando los elementos</h1>
+        <p>Hay numerosas formas de manipular un elemento existente con jQuery. 
+            La más común es cambiar el contenido del HTML o un atributo de un elemento. 
+            jQuery permite de manera simple, la manipulación de estos. 
+            También se puede conseguir información acerca de ellos. 
+            A continuación veremos una lista con los métodos más comunes para conseguir información:
+        </p>
+        <ul>
+            <li><a href="http://api.jquery.com/html/">.html()</a> – Obtiene o establece el contenido del HTML.</li>
+            <li><a href="http://api.jquery.com/text/">.text()</a> – Obtiene o establece el texto</li>
+            <li><a href="http://api.jquery.com/attr/">.attr()</a> – Obtiene o establece el valor de un atribuito.</li>
+            <li><a href="http://api.jquery.com/width/">.width()</a> – Obtiene o establece la anchura en pixels del primer elemento de la selección como un integer.</li>
+            <li><a href="http://api.jquery.com/height/">.height()</a> – Obtiene o establece la altura en pixels del primer elemento de la selección como un integer.</li>
+            <li><a href="http://api.jquery.com/position/">.position()</a> – Obtiene un objeto con la información de la posición para el primer elemento de la selección, relativo a su primer ancestro posicionado.</li>
+            <li><a href="http://api.jquery.com/val/">.val()</a> – Obtiene o establece el valor de un elemento dentro un formulario.</li>
+        </ul>
+        <h3>Getters o Setters</h3>
+        <p>Cambiando los elementos es algo trivial, 
+            solo hay que recorder que el cambio afectará a todos los elementos de la selección. 
+            Si solo quieres cambiar un elemento, asegúrate de estar llamando a 
+            ese elemento antes de crear un método setter.
+        </p>
+        <pre>
+            <code>
+$( "#myDiv p:first" ).html( "New &lt;strong&gt;first&lt;/strong&gt; paragraph!" );
+            </code>
+        </pre>
+        <br>
+        <h3>Moviendo, Copiando y Eliminando Elementos</h3>
+        <p>Hay un gran número de formas para mover elementos alrededor del DOM, 
+            pero hay dos maneras de enfocarlo:
+        </p>
+        <ul>
+            <li>Colocar el elemento(s) seleccionado relativo a otro elemento.</li>
+            <li>Colocar un elemento de manera relativa al elemento seleccionado.</li>
+        </ul>
+        <p>Por ejemplo, jQuery tiene los métodos “.insertAfter()” y “.after()”. 
+            El método “.insertAfter()” coloca el elemento(s) seleccionado(s) después del 
+            elemento proporcionado como argumento. Mientras el método “.after()” coloca 
+            el elemento proporcionado como argumento después del elemento seleccionado. 
+            Luego otros métodos siguen el mismo patrón como “.insertBefore()” y “.before()”,
+            “.appendTo()” y “.append()”, y como “.prependTo()” y “.prepend()”.
+        </p>
+        <p>El método que necesitarás va a depender de como 
+            enfoques la manera de mover o los elementos que quieras insertar.
+        </p>
+        <pre>
+            <code>
+// Mover elementos tiene diferentes enfoques
+
+// Para hacer el primer item de la lista el último item
+var li = $( "#myList li:first" ).appendTo( "#myList" );
+ 
+// Otro enfoque al mismo problema
+$( "#myList" ).append( $( "#myList li:first" ) );
+ 
+// Podemos ver que no hay forma de acceder al item de la lista 
+// que hemos movido porque vuelve a la lista
+            </code>
+        </pre>
+        <br>
+        <h3>Clonando Elementos</h3>
+        <p>Métodos como “.appendTo()” mueven el elemento, pero algunas veces se
+            necesita una copia del elemento. Se puede usar por ejemplo “.clone()”.
+        </p>
+        <pre>
+            <code>
+// Primero se hace una copia del elemento
+ 
+// Y luego se pone al final de la lista
+$( "#myList li:first" ).clone().appendTo( "#myList" );
+            </code>
+        </pre>
+        <br>
+        <p>Para pasar además datos relativos y eventos al elemento clonado, se tendrá
+            que usar "true" como argumento.
+        </p>
+        <h3>Eliminando Elementos</h3>
+        <p>Hay dos formas de eliminar elementos de la página:</p>
+        <ul>
+            <li><a href=”http://api.jquery.com/remove/” >.remove()</a>: 
+                Elimina el elemento permanentemente de la página web. Pero devuelve 
+                el elemento eliminado sin los datos y eventos asociados a él por si 
+                se quiere devolverlo a la web.</li>
+            <li><a href=”http://api.jquery.com/detach/”>.detach()</a>: 
+                Elimina el elemento permanentemente de la página web. Pero devuelve 
+                el elemento eliminado con los datos y eventos asociados a él por si 
+                se quiere devolverlo a la web. </li>
+            <li><a href="http://api.jquery.com/empty/">.empty()</a>:
+                Elimina el contenido del elemento dejándolo vacío.</li>
+        </ul>
+        <p>El método “.detach()” es bastante importante cuando se está realizando 
+            una manipulación en muchos elementos de la web. Pues se puede manipular
+            el árbol DOM mientras se mantienen todos los eventos y datos asociados
+            los elementos.
+        </p>
+        <h3>Creando nuevos elementos</h3>
+        <p>
+            jQuery ofrece de manera trivial una forma de crear nuevos elementos 
+            e insertarlos con el método que siempre hemos visto $(). Existen dos 
+            métodos de crear elementos de manera interactiva y fácil.
+        </p>
+        <pre>
+            <code>
+// Crear elementos nuevos desde un string HTML
+$( "&lt;p&gt;This is a new paragraph&lt;/p&gt;" );
+$( "&lt;li class=\"new\"&gt;new list item&lt;/li&gt;" );
+            </code>
+        </pre>
+        <br>
+        <pre>
+            <code>
+// También se puede crear como un objeto jQuery
+$( "&lt;a/&gt;", {
+    html: "This is a &lt;strong&gt;new&lt;/strong&gt; link",
+    "class": "new",
+    href: "foo.html"
+});
+            </code>
+        </pre>
+        <br>
+        <p>Se puede ver que la propiedad Class está quoteada mientras que “html”
+            y “href” no. Los nombres de las propiedades no suelen estar quoteadas 
+            a no ser que sean <a href="https://mathiasbynens.be/notes/reserved-keywords">palabras reservadas</a>. Una vez creado el elemento, 
+            no se inserta inmediatamente a la página, hay diversas formas para 
+            insertar un elemento que vamos a ver.
+        </p>
+        <pre>
+            <code>
+NewElement = $( "&lt;p&gt;New element&lt;/p&gt;" );
+myNewElement.appendTo( "#content" );
+myNewElement.insertAfter( "ul:last" ); // Esto eliminará el contenido del p de #content
+$( "ul" ).last().after( myNewElement.clone() ); // Clona el elemento p y ahora existen dos
+            </code>
+        </pre>
+        <br>
+        <p>
+            El elemento creado no necesita guardarse en una variable porque 
+            puedes llamar al método para añadir el elemento directamente.
+            También puede crear un elemento mientras se añade a la página, pero 
+            entonces no tendrás una referencia para el elemento creado.
+        </p>
+        <pre>
+            <code>
+// También se puede crear como un objeto jQuery
+$( "&lt;a/&gt;", {
+    html: "This is a &lt;strong&gt;new&lt;/strong&gt; link",
+    "class": "new",
+    href: "foo.html"
+});
+            </code>
+        </pre>
+        <br>
+        <p>
+            La sintaxis para añadir nuevos elementos es fácil, pero hay que 
+            tener cuidado con l rendimiento de añadir elementos al árbol DOM de
+            manera repetida. La manera más eficiente de insertar muchos elementos
+            es crear un solo string con toda la información dentro y entonces
+            insertarlo en vez de ir insertando los elementos uno a uno. Se puede
+            usar un array o un String.
+        </p>
+        <pre>
+            <code>
+//Como array
+var myItems = [];
+var myList = $( "#myList" );
+ 
+for ( var i = 0; i &lt; 100; i++ ) {
+    myItems.push( "&lt;li&gt;item " + i + "&lt;/li&gt;" );
+}
+ 
+myList.append( myItems.join( "" ) );
+            </code>
+        </pre>
+        <br>
+        <pre>
+            <code>
+//Como String
+var myItems = "";
+var myList = $( "#myList" );
+ 
+for ( var i = 0; i &lt; 100; i++ ) {
+    myItems += "&lt;li&gt;item " + i + "&lt;/li&gt;";
+}
+ 
+myList.append( myItems);
+            </code>
+        </pre>
+        <br>
+        <h3>Manipulando atributos</h3>
+        <p>La manipulación de atributos dentro de jQuery es bastante amplia.
+            Los cambios básicos son simples, pero el método attr() permite una
+            compleja manipulación si se desea. Puede obtener un valor de un 
+            atributo o establecerlo. Para usarlo se necesita usar dos argumentos,
+            el tipo de atributo y el valor del atributo.
+        </p>
+        <pre>
+            <code>
+$( "#myDiv a:first" ).attr( "href", "nuevoLink.html" );
+            </code>
+        </pre>
+        <br>
+        <pre>
+            <code>
+// Manipulating multiple attributes.
+$( "#myDiv a:first" ).attr({
+    href: "newDestination.html",
+    rel: "nofollow"
+});
+            </code>
+        </pre>
+        <br>
+        <pre>
+            <code>
+$( "#myDiv a:first" ).attr({
+    rel: "nofollow",
+    href: function( idx, href ) {
+        return "/new/" + href;
+    }
+});
+ 
+$( "#myDiv a:first" ).attr( "href", function( idx, href ) {
+    return "/new/" + href;
+});
+            </code>
+        </pre>
+        <br>
+    </div>
 {% endblock %}
