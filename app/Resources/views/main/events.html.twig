@@ -107,7 +107,6 @@ $( "#adios" ).on( "click", {
             </code>
         </pre>
         <br>
-        
         <h3>Añadiendo Eventos a Nuevos Elementos de la Página</h3>
         <p>Es importante tener en cuenta que .on () sólo puede crear listeners 
             de eventos en elementos que existen al momento de configurar los 
@@ -117,17 +116,29 @@ $( "#adios" ).on( "click", {
         </p>
         <pre>
         <code>
-$( "#especial" ).click(function() {
-    alert( "Has pulsado sobre un párrafo" );
-});
-
-$( "#especial" ).on( "click", function() {
-    alert( "Has hecho click sobre un párrafo" );
+$( document ).ready(function(){
+ 
+    // Sets up click behavior on all button elements with the alert class
+    // that exist in the DOM when the instruction was executed
+    $( "button.alert" ).on( "click", function() {
+        console.log( "A button with the alert class was clicked!" );
+    });
+ 
+    // Now create a new button element with the alert class. This button
+    // was created after the click listeners were applied above, so it
+    // will not have the same click behavior as its peers
+    $( "&lt;button class='alert'&gt;Alert!&lt;/button&gt;" ).appendTo( document.body );
 });
             </code>
         </pre>
         <br>
-    
+        <p>Por ello es importante que veamos a continuación la Delegación de Eventos</p>
+        <p>La Delegación de Eventos permitirá asociar un listener de evento a 
+            un elemento padre que se disparará para todos los descendientes que 
+            coincide con el selector, aunque esos descendientes existan ahora o
+            en el futuro.
+        </p>
+        
     </div>
 {% endblock %}
 
