@@ -107,6 +107,35 @@ $( "#adios" ).on( "click", {
             </code>
         </pre>
         <br>
+        <h3>Dentro del controlador del Evento</h3>
+        <p>Cada controlador del evento recibe un objeto “event”, el cual contiene
+            numerosas propiedades y métodos. Este objeto es usado mayormente para 
+            evitar la acción predeterminada del evento a través del método 
+            .preventDefault (). Sin embargo, el objeto “event” contiene otras 
+            propiedades y métodos útiles, incluyendo:
+        </p>
+        <ul>
+            <li><a href="https://api.jquery.com/event.pageX/">pageX</a>, <a href="https://api.jquery.com/event.pageY/">pageY</a>: Devuelve la posición del ratón en el momento que ocurre el evento relative a la parte superior izquierda de la página.</li>
+            <li><a href="https://api.jquery.com/event.type/">type</a>: El tipo de evento, por ejemplo “click”.</li>
+            <li><a href="https://api.jquery.com/event.which/">which</a>: El botón o tecla que fue pulsado.</li>
+            <li><a href="https://api.jquery.com/event.data/">data</a>: Cualquier dato que se pase cuando el evento se fija al elemento.</li>
+            <li><a href="https://api.jquery.com/event.target/">target</a>: El elemento DOM que inicia el evento.</li>
+            <li><a href="https://api.jquery.com/event.preventDefault/">preventDefault()</a>: Evita la acción predeterminada de un evento, por ejemplo, abrir un enlace.</li>
+            <li><a href="https://api.jquery.com/event.stopPropagation/">stopPropagation()</a>: Evita que el evento se propague a otros elementos de mayor jerarquía en el árbol DOM.</li>
+        </ul>
+        <p>Aquí podemos ver en acción ".preventDefault()".</p>
+        <a href="www.google.com" id="google">Ve a la página de inicio de Google</a>
+        <pre>
+        <code>
+$(function() {
+    $( "#google" ).click(function( event ) {
+        event.preventDefault();
+        alert("NO");
+    });
+});
+            </code>
+        </pre>
+        <br>
         <h3>Añadiendo Eventos a Nuevos Elementos de la Página</h3>
         <p>Es importante tener en cuenta que .on () sólo puede crear listeners 
             de eventos en elementos que existen al momento de configurar los 

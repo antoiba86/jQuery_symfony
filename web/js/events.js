@@ -116,3 +116,10 @@ $( document ).ready(function(){
         }
     );
 });
+
+$(function() {
+    $( "#google" ).click(function( event ) {
+        event.preventDefault();
+        alert("NO");
+    });
+});
