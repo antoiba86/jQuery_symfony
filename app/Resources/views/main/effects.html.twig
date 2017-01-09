@@ -1,6 +1,121 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Hello cheatsheet</p>
+    <div class="col-md-10 col-md-offset-1">
+        <h1>Efectos</h1>
+        <p>
+            jQuery hace trivial añadir un simple efecto a tu página. Los efectos
+            con jQuery son simples de usar y con una gran dinamización al poder
+            añadir duración por ejemplo. También se puede crear animación de
+            propiedades CSS.
+        </p>
+        <p>Para una completa visualización de los efectos, consultar el siguiente 
+            enlace: <a href="{{ path('cheatsheet') }}#effects">Efectos</a>
+        </p>
+        <h3>Introducción</h3>
+        <p>jQuery permite que un elemento cualquiera, se pueda
+            esconder o mostrar de manera sencilla con show() y hide().
+        </p>
+        <button id="esconder">Esconde este botón</button>
+        <button id="mostrar">Muestra el botón escondido</button>
+        <br>
+        <pre>
+        <code>
+$(function() {
+   $("#esconder").click(function() {
+       $(this).hide();
+   });
+   $("#mostrar").click(function() {
+       if($('#esconder').is(':hidden')) {
+            $("#esconder").show();
+        }
+        else {
+            alert("No está escondido");
+        }
+   });
+});
+        </code>
+        </pre>
+        <br>
+        <h4>Cambiar la velocidad de la animación</h4>
+        <p>
+            Cuando se usa hide() con jQuery, la propiedad CSS display del elemento
+            se pone como “none”. Esto significa que el contenido tendrá anchura
+            y altura cero. Por lo tanto el contenido será como si no existiera 
+            en vez de ser transparente.
+            Ahora vamos a usar show() y hide() con efectos de animación.
+        </p>
+        <button id="esconder-rap">Esconde este botón rápido</button>
+        <button id="esconder-lento">Esconde este botón lento</button>
+        <button id="mostrar2">Mostrar los botones escondidos</button>
+        <br>
+        <br>
+        <pre>
+        <code>
+$(function() {
+   $("#esconder-rap").click(function() {
+       $(this).hide("fast");
+   });
+   $("#esconder-lento").click(function() {
+       $(this).hide("slow");
+   });
+   $("#mostrar2").click(function() {
+       $("#esconder-rap").show("fast");
+       $("#esconder-lento").show("slow");
+   });
+});
+        </code>
+        </pre>
+        <br>
+        <h4>Controlando la velocidad con milisegundos</h4>
+        <p>También se puede tener un control más directo sobre el tiempo de la 
+            animación, solo hace falta poner un número que será procesado en 
+            milisegundos.
+        </p>
+        <input type="number" id="seconds-hide" value="500">
+        <button id="esconder-seconds">Esconde este botón como tu elijas</button>
+        <button id="mostrar3">Mostrar los botones escondidos</button>
+        <br>
+        <br>
+        <pre>
+        <code>
+$(function() {
+   $("#esconder-seconds").click(function() {
+       var num = $("#seconds-hide").val();
+       $(this).hide(parseInt(num));
+   });
+   $("#mostrar3").click(function() {
+       var num = $("#seconds-hide").val();
+       $("#esconder-seconds").show(parseInt(num));
+   });
+   
+});
+        </code>
+        </pre>
+        <br>
+        <h3>Animación Fade y Slide</h3>
+        <p>
+            Los efectos de .show() y .hide() usan una combinación de efectos de 
+            slide y fade cuando muestran y los esconden los elementos. Si 
+            prefieres usar solo uno de los efectos hay métodos alternativos como 
+            .slideDown() y .slideUp() muestran o esconden el contenido, 
+            respectivamente, usando un efecto deslizante.
+        </p>
+        <p>
+            Los animaciones deslizantes usan un cambio rápido en la propiedad
+            height CSS del elemento.
+        </p>
+        <div>
+            <img id="p-dis" src="{{ asset('images/flash.jpg') }}">
+            <br>
+            <button id="p-slideUp">Haz magia y haz desaparecer la imagen</button>
+            <button id="mostrar4">Mostrar la imagen con slideDown</button>
+        </div>
+
+    </div>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/effects.js') }}"></script>
+{% endblock %}

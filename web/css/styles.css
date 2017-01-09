@@ -162,6 +162,11 @@ section {
     display:block
 }
 
+#p-dis {
+    display:block;
+    width:25%;
+}
+
 /***********FOOTER***********************/
 
 footer p {
