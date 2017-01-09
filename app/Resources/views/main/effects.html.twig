@@ -94,6 +94,7 @@ $(function() {
         </pre>
         <br>
         <h3>Animación Fade y Slide</h3>
+        <h4>SlideDown y SlideUp</h4>
         <p>
             Los efectos de .show() y .hide() usan una combinación de efectos de 
             slide y fade cuando muestran y los esconden los elementos. Si 
@@ -111,6 +112,78 @@ $(function() {
             <button id="p-slideUp">Haz magia y haz desaparecer la imagen</button>
             <button id="mostrar4">Mostrar la imagen con slideDown</button>
         </div>
+            <br>
+        <pre>
+        <code>
+$(function() {
+   $("#p-slideUp").click(function() {
+       $("#p-dis").slideUp();
+   });
+   $("#mostrar4").click(function() {
+       $("#p-dis").slideDown();
+   });
+});
+        </code>
+        </pre>
+        <br>
+        <h4>
+            FadeIn y FadeOut
+        </h4>
+            <p>
+                Parecidos son los métodos de .fadeIn() y .fadeOut() para mostrar
+                y esconder contenido con una animación de desaparecer. 
+                Las animaciones de fade cambian rápidamente la propiedad 
+                opacity del CSS del elemento.
+            </p>
+            <button id="desa-p">Haz desaparecer todos los párrafos</button>
+            <button id="mostrar-p">Hazlos aparecer de nuevo</button>
+            <br>
+        <br>
+        <pre>
+        <code>
+$(function() {
+    $("#desa-p").click(function() {
+       $( "p" ).fadeOut( 1500 );
+   });
+   $("#mostrar-p").click(function() {
+       $( "p" ).fadeIn( 750 );
+   });
+});
+
+        </code>
+        </pre>
+        <br>
+        <h3>Cambiar estado basado en la actual visibilidad</h3>
+        <p>
+            jQuey puede cambiar la visibilidad basada en el estado actual de la 
+            visibilidad. Mediante .toggle() se mostrará el elemento si está 
+            escondido y lo esconderá si está visible. Y se pueden pasar los 
+            mismos argumentos a .toggle() que al resto de los métodos.
+        </p>
+        <div>
+            <img id="quicksilver" src="{{ asset('images/quiksilver.jpg') }}">
+            <button id="toggle-fast">Haz desaparecer la imagen rapido</button>
+            <button id="toggle-normal">Haz desaparecer la imagen normal</button>
+            <button id="toggle-slow">Haz desaparecer la imagen muy lento</button>
+        </div>
+        <br>
+        <br>
+        <pre>
+        <code>
+$(function() {
+    $("#toggle-fast").click(function() {
+       $( "#quicksilver" ).toggle();
+   });
+   $("#toggle-normal").click(function() {
+       $( "#quicksilver" ).toggle( "slow" );
+   });
+   $("#toggle-slow").click(function() {
+       $( "#quicksilver" ).toggle( 5000 );
+   });
+});
+        </code>
+        </pre>
+        <br>
 
     </div>
 {% endblock %}

@@ -167,6 +167,11 @@ section {
     width:25%;
 }
 
+#quicksilver {
+    display:block;
+    width:25%;
+}
+
 /***********FOOTER***********************/
 
 footer p {

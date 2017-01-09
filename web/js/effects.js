@@ -48,5 +48,34 @@ $(function() {
    $("#mostrar4").click(function() {
        $("#p-dis").slideDown();
    });
-   
+});
+
+$(function() {
+    $("#desa-p").click(function() {
+       $( "p" ).fadeOut( 1500 );
+   });
+   $("#mostrar-p").click(function() {
+       $( "p" ).fadeIn( 750 );
+   });
+});
+
+$(function() {
+    $("#desa-p").click(function() {
+       $( "p" ).fadeOut( 1500 );
+   });
+   $("#mostrar-p").click(function() {
+       $( "p" ).fadeIn( 750 );
+   });
+});
+
+$(function() {
+    $("#toggle-fast").click(function() {
+       $( "#quicksilver" ).toggle();
+   });
+   $("#toggle-normal").click(function() {
+       $( "#quicksilver" ).toggle( "slow" );
+   });
+   $("#toggle-slow").click(function() {
+       $( "#quicksilver" ).toggle( 5000 );
+   });
 });
