@@ -40,3 +40,79 @@ $( "#adios" ).on( "click", {
 }, function( event ) {
     alert( "Párrafo adios dice: " + event.data.foo );
 });
+
+$( document ).ready(function(){
+    $(".alert").click(function(){
+       alert("Has pulsado un botón con alert jeje");
+       $( "<button class='alert'>Alert!</button>" ).appendTo( "#alert-buttons" );
+    });
+});
+
+$( document ).ready(function(){
+    $( "#alert-buttons2" ).on( "click", ".alert2", function() {
+        alert("Has pulsado un botón con alert jeje");
+        $( "<button class='alert2'>Alert!</button>" ).appendTo( "#alert-buttons2" );
+    });
+});
+
+$( document ).ready(function(){
+    $( "#b-unico" ).one( "click", function() {
+        alert("Solo me puedes pulsar una vez, lo siento");
+    });
+});
+
+$( document ).ready(function(){
+    $( "#b-nounico" ).one( "click", firstClick);
+});
+
+function firstClick() {
+    alert( "Me puedes pulsar más veces!!!!!" );
+    
+    // Ahora creamos un nuevo controlador para el botón
+    $( this ).click( function() { alert( "Te lo dije, púlsame todas las veces que quieras!" ); } );
+}
+
+
+$( document ).ready(function(){
+    $( "#hola-b" ).click(holaClase);
+    
+    $("#poner-hola").click(function() {
+        $("#hola-b").on("click", holaClase);
+    });
+    
+    $("#quitar-hola").click(function() {
+        $("#hola-b").off("click");
+    });
+});
+
+function holaClase() {
+    alert("Hola");
+}
+
+
+$( document ).ready(function(){
+    $( "#hola-b2" ).click(holaClase).mouseenter(holaClase);
+    
+    $("#poner-hola2").click(function() {
+        $("#hola-b2").on("click", holaClase);
+    });
+    
+    $("#quitar-hola2").click(function() {
+        $("#hola-b2").off("click mouseenter");
+    });
+});
+
+
+$( document ).ready(function(){
+    $( ".onefun" ).hover(function() {
+        $( this ).fadeOut( 100 );
+        $( this ).fadeIn( 500 );
+    });
+    $( ".twofun" ).hover(
+        function() {
+            $( this ).append( $( "<span> ***</span>" ));
+        }, function() {
+            $( this ).find( "span:last" ).remove();
+        }
+    );
+});

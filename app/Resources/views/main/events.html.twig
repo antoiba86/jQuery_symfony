@@ -117,28 +117,168 @@ $( "#adios" ).on( "click", {
         <pre>
         <code>
 $( document ).ready(function(){
- 
-    // Sets up click behavior on all button elements with the alert class
-    // that exist in the DOM when the instruction was executed
-    $( "button.alert" ).on( "click", function() {
-        console.log( "A button with the alert class was clicked!" );
-    });
- 
-    // Now create a new button element with the alert class. This button
-    // was created after the click listeners were applied above, so it
-    // will not have the same click behavior as its peers
-    $( "&lt;button class='alert'&gt;Alert!&lt;/button&gt;" ).appendTo( document.body );
+    // Creamos un evento click en todos los button con class alert
+    // que existen en el DOM en el momento de que la instrucción se ejecute
+    $(".alert").click(function(){
+           alert("Has pulsado un botón con alert jeje");
+           // Ahora se crea un nuevo elemento button con alert class
+           // Pero al haberse creado después, no tiene el mismo evento asociado
+           $( "&lt;button class='alert'&gt;Alert!&lt;/button&gt;" ).appendTo( "#alert-buttons" );
+        });
 });
             </code>
         </pre>
         <br>
+        <div id="alert-buttons">
+            <button class="alert">Púlsame</button>
+        </div>
         <p>Por ello es importante que veamos a continuación la Delegación de Eventos</p>
+        <h3>Delegación de Eventos</h3>
         <p>La Delegación de Eventos permitirá asociar un listener de evento a 
             un elemento padre que se disparará para todos los descendientes que 
             coincide con el selector, aunque esos descendientes existan ahora o
             en el futuro.
         </p>
-        
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( "#alert-buttons2" ).on( "click", ".alert2", function() {
+        alert("Has pulsado un botón con alert jeje");
+        $( "&lt;button class='alert2'&gt;Alert!&lt;/button&gt;" ).appendTo( "#alert-buttons2" );
+    });
+});
+            </code>
+        </pre>
+        <br>
+        <div id="alert-buttons2">
+            <button class="alert2">Púlsame mucho</button>
+        </div>
+        <h3>Eventos de usar y tirar</h3>
+        <p>A veces se necesita algún tipo de evento que solo se vaya a usar una vez.
+            Para ello en vez de utilizar un contador o algún tipo de variable booleana
+            podemos utilizar el método <a href="http://api.jquery.com/one/">"one()"</a>.
+        </p>
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( "p" ).one( "click", function() {
+        alert("Solo me puedes pulsar una vez, lo siento");
+    });
+});
+            </code>
+        </pre>
+        <br>
+        <button id="b-unico">Este botón es único</button>
+        <br>
+        <h3>Cambiando la funcionalidad</h3>
+        <p>Otra funcionalidad puede ser que después de un primer uso, a este elemento
+            se le pueda asociar otro tipo de evento.
+        </p>
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( "#b-nounico" ).one( "click", firstClick);
+});
+
+function firstClick() {
+    alert( "Me puedes pulsar más veces!!!!!" );
+    
+    // Ahora creamos un nuevo controlador para el botón
+    $( this ).click( function() { alert( "Te lo dije, púlsame todas las veces que quieras!" ); } );
+}
+            </code>
+        </pre>
+        <br>
+        <button id="b-nounico">Este botón no de un solo uso</button>
+        <h3>Desvincular Eventos</h3>
+        <p>Para eliminar un evento de un element se usa el método “.off()” y se 
+            pasa al evento que queramos. 
+        </p>
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( "#hola-b" ).click(holaClase);
+    
+    $("#poner-hola").click(function() {
+        $("#hola-b").on("click", holaClase);
+    });
+    
+    $("#quitar-hola").click(function() {
+        $("#hola-b").off("click");
+    });
+});
+
+function holaClase() {
+    alert("Hola");
+}
+            </code>
+        </pre>
+        <br>
+        <button id="hola-b">Hola</button>
+        <button id="poner-hola">Pone el Hola</button>
+        <button id="quitar-hola">Quita el Hola</button>
+        <br>
+        <br>
+        <p>Como ".on()" se puede desvincular varios eventos de un elemento.</p>
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( "#hola-b2" ).click(holaClase).mouseenter(holaClase);
+    
+    $("#poner-hola2").click(function() {
+        $("#hola-b2").on("click", holaClase);
+    });
+    
+    $("#quitar-hola2").click(function() {
+        $("#hola-b2").off("click mouseenter");
+    });
+});
+
+function holaClase() {
+    alert("Hola");
+}</code>
+        </pre>
+        <br>
+        <button id="hola-b2">Hola</button>
+        <button id="poner-hola2">Pone el Hola</button>
+        <button id="quitar-hola2">Quita el Hola</button>
+        <br>
+        <h3>Event Helpers</h3>
+        <p>jQuery ofrece funciones auxiliares que sirve para facilitar el uso de 
+            los métodos ya implementados. En este caso, la función auxiliar es 
+            <a href="https://api.jquery.com/hover/">“.hover()”</a>.
+        </p>
+        <h5>.hover()</h5>
+        <p>Este método te permite pasar una o dos funciones que se activarán con 
+        los eventos mouseenter y mouseleave de un elemento. Si pasas una función, 
+        los dos eventos activarán la función, pero si pasas dos funciones,
+        la primera será ejecutada con mouseenter y la segunda con mouseleave.
+        </p>
+        <ul>
+            <li class="onefun">Este item de la lista tiene asociada una función.</li>
+            <li class="onefun">Este item de la lista tiene asociada una función.</li>
+            <li class="twofun">Pero este tiene asociado dos funciones.</li>
+            <li class="twofun">Pero este tiene asociado dos funciones.</li>
+        </ul>
+        <pre>
+        <code>
+$( document ).ready(function(){
+    $( ".onefun" ).hover(function() {
+        $( this ).fadeOut( 100 );
+        $( this ).fadeIn( 500 );
+    });
+    $( ".twofun" ).hover(
+        function() {
+            $( this ).append( $( "<span> ***</span>" ));
+        }, function() {
+            $( this ).find( "span:last" ).remove();
+        }
+    );
+});
+}</code>
+        </pre>
+        <br>
+
     </div>
 {% endblock %}
 
