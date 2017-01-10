@@ -162,16 +162,46 @@ section {
     display:block
 }
 
-#p-dis {
+#p-dis, #quicksilver {
     display:block;
     width:25%;
 }
 
-#quicksilver {
-    display:block;
+#flash2, #quicksilver2, .superhero {
     width:25%;
+    margin-left:20px;
+    margin-bottom:20px;
 }
 
+#square {
+    position: relative;
+    background-color: #abc;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+
+.square2 {
+    background-color: #abc;
+    border: 2px solid black;
+    width: 200px;
+    height: 80px;
+    margin: 10px;
+}
+  
+#square2 {
+    height: 100px;
+}
+
+#hoverme-stop-2 img, #hoverme1 {
+    height:150px;
+}
+
+#hoverme-stop-2, #hoverme-stop-1 {
+    height:200px;
+}
 /***********FOOTER***********************/
 
 footer p {

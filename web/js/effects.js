@@ -79,3 +79,51 @@ $(function() {
        $( "#quicksilver" ).toggle( 5000 );
    });
 });
+
+$(function() {
+    $("#fadeTog").click(function() {
+       $( "#quicksilver2" ).fadeToggle();
+   });
+   $("#slideTog").click(function() {
+       $( "#flash2" ).slideToggle( );
+   });
+});
+
+$(function() {
+    $("#button-delay").click(function() {
+        $( "#quicksilver3" ).slideUp(800).delay( 1500 ).fadeIn(1000);
+        $( "#flash3" ).slideUp(800).fadeIn(1000);
+        $( "#wonder3" ).hide(800).delay( 1500 ).show(1000);
+        $( "#super3" ).hide().delay( 1500 ).show();
+    });
+});
+
+$( "#go" ).click(function() {
+  $( "#square" ).animate({ left: "+=100px" }, 2000 );
+});
+ 
+// Stop animation when button is clicked
+$( "#stop" ).click(function() {
+  $( "#square" ).stop();
+});
+ 
+// Start animation in the opposite direction
+$( "#back" ).click(function() {
+  $( "#square" ).animate({ left: "-=100px" }, 2000 );
+});
+
+$( "#toggle-stop" ).on( "click", function() {
+  $(".square2").stop().slideToggle( 1000 );
+});
+
+$( "#hoverme-stop-2" ).hover(function() {
+  $( this ).find( "img" ).stop( true, true ).fadeOut();
+}, function() {
+  $( this ).find( "img" ).stop( true, true ).fadeIn();
+});
+
+$( "#hoverme-stop-1" ).hover(function() {
+  $( this ).find( "img" ).fadeOut();
+}, function() {
+  $( this ).find( "img" ).fadeIn();
+});

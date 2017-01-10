@@ -162,9 +162,9 @@ $(function() {
         </p>
         <div>
             <img id="quicksilver" src="{{ asset('images/quiksilver.jpg') }}">
-            <button id="toggle-fast">Haz desaparecer la imagen rapido</button>
-            <button id="toggle-normal">Haz desaparecer la imagen normal</button>
-            <button id="toggle-slow">Haz desaparecer la imagen muy lento</button>
+            <button id="toggle-fast">Haz aparecer o desaparecer la imagen rapido</button>
+            <button id="toggle-normal">Haz aparecer o desaparecer la imagen normal</button>
+            <button id="toggle-slow">Haz aparecer o desaparecer la imagen muy lento</button>
         </div>
         <br>
         <br>
@@ -184,7 +184,116 @@ $(function() {
         </code>
         </pre>
         <br>
-
+        <h4>fadeToggle y slideToggle</h4>
+        <p>Los métodos fadeToggle y slideToggle utilizan los métodos que hemos visto
+            anteriormente. El método fadeToggle hace desaparecer una imagen o la hace aparecer
+            dependiendo de su visibilidad y el método slideToggle muestra o esconde el contenido, 
+            respectivamente, usando un efecto deslizante.
+        </p>
+        <div>
+            <img id="flash2" src="{{ asset('images/flash.jpg') }}">
+            <img id="quicksilver2" src="{{ asset('images/quiksilver.jpg') }}"><br>
+            <button id="fadeTog">slideToggle Flash</button>
+            <button id="slideTog">fadeToggle Quicksilver</button>
+        </div>
+        <br>
+        <pre>
+        <code>
+$(function() {
+    $("#fadeTog").click(function() {
+       $( "#quicksilver2" ).fadeToggle();
+   });
+   $("#slideTog").click(function() {
+       $( "#flash2" ).slideToggle( );
+   });
+});
+        </code>
+        </pre>
+        <br>
+        <h3>Método delay()</h3>
+        <p>
+            El método delay() permite pausar ejecuciones de funciones que se siguen
+            mediante callbacks.
+            Es un método útil para retrasar la ejecución de funciones encadenadas para un mismo
+            elemento. Sin embargo, es importante señalar que no se puede utilizar
+            los métodos show() y hide() sin argumentos.
+        </p>
+        <div>
+            <img id="flash3" class="superhero" src="{{ asset('images/flash.jpg') }}">
+            <img id="quicksilver3" class="superhero" src="{{ asset('images/quiksilver.jpg') }}">
+            <img id="wonder3" class="superhero" src="{{ asset('images/wonder.jpg') }}">
+            <img id="super3" class="superhero" src="{{ asset('images/supergirl.jpg') }}"><br>
+            <button id="button-delay">Haz aparecer o desaparecer las imágenes rápido</button>
+        </div>
+        <br>
+        <pre>
+        <code>
+$(function() {
+    $("#button-delay").click(function() {
+        $( "#quicksilver3" ).slideUp(800).delay( 1500 ).fadeIn(1000);
+        $( "#flash3" ).slideUp(800).fadeIn(1000);
+        $( "#wonder3" ).hide(800).delay( 1500 ).show(1000);
+        $( "#super3" ).hide().delay( 1500 ).show();
+    });
+});
+        </code>
+        </pre>
+        <br>
+        <h3>Método stop()</h3>
+        <p>
+            El método stop() para la animación que se está ejecutando en ese momento 
+            para el elemento indicado. Si por ejemplo se usa stop() mientras un
+            elemento está usando slideUp(), el elemento seguirá mostrado pero con
+            una altura menor en el momento de utilizar stop().
+            Si más de una animación es llamada en el mismo elemento de manera 
+            encadenada, las animaciones que siguen antes de llegar a stop() 
+            pararán y las animaciones que hay después empezarán inmediatamente.
+        </p>
+        <h4>clearQueue y jumpToEnd </h4>
+        <p>
+            Bien, ahora vamos a ver que stop() tiene dos opciones para 
+            personalizar su efecto.
+        </p>
+        <pre>
+        <code>
+.stop( [clearQueue ] [, jumpToEnd ] )
+        </code>
+        </pre>
+        <br>
+        <p>
+            Los parámetros de clearQueue y jumpToEnd son parámetros booleanos 
+            que por defecto están en false.
+            El parámetro clearQueue si lo ponemos a True sirve para hacer que 
+            nunca se ejecuten las siguientes animaciones que están en la cola.
+            El parámetro jumpToEnd como su nombre indica, si se pone el argumento
+            a True hace que la animación salte al final y termine inmediatamente 
+            aunque le queden segundos para completarse. 
+        </p>
+        <div id="square">
+            
+        </div>
+        <button id="go">Go</button>
+        <button id="stop">STOP!</button>
+        <button id="back">Back</button><br>
+        <p>
+            Aquí podemos ver otro ejemplo que hace uso del comando stop().
+        </p>
+        <button id="toggle-stop">slideToggle</button>
+        <div id="square2">
+            <div class="square2"></div>
+        </div>
+        <p>La verdadera utilidad del método stop() es cuando se necesita animar
+            un elemento con mouseenter y mouseleave.
+        </p>
+        
+        <div id="hoverme-stop-2">
+            <p>Pasa sobre mi</p>
+            <img id="hoverme" src="{{ asset('images/book.jpg') }}" alt="" width="100" height="123">
+        </div>
+        <div id="hoverme-stop-1">
+            <p>Pasa sobre mi</p>
+            <img id="hoverme1" src="{{ asset('images/book2.png') }}" alt="" width="100" height="123">
+        </div>
     </div>
 {% endblock %}
 
