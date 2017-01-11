@@ -202,6 +202,31 @@ section {
 #hoverme-stop-2, #hoverme-stop-1 {
     height:200px;
 }
+
+#inputPrueba {
+    margin-left: 2.5%;
+    width: 30%;
+}
+
+.yellow, .yellow2, .yellow3 {
+    background: yellow;
+    margin: 6px 0;
+}
+
+#google {
+    color:red;
+}
+
+.specialBig {
+    font-size: 100%;
+    color:blue;
+}
+
+.specialLittle {
+    font-size: 200%;
+    color:red;
+}
+
 /***********FOOTER***********************/
 
 footer p {
