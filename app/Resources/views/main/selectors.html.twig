@@ -195,6 +195,49 @@ $(function() {
         </code>
     </pre>
     <br>
+    <h4>filter()</h4>
+    <p>
+        Dado un objeto jQuery que representa un conjunto de elementos DOM, 
+        el método .filter () construye un nuevo objeto jQuery de un subconjunto
+        de los elementos coincidentes. El selector suministrado se prueba contra
+        cada elemento; Todos los elementos que coincidan con el selector se 
+        incluirán en el resultado.<br>
+        Por ejemplo, tenemos una lista.
+    </p>
+    <ul id="myList">
+        <li><strong> item 0</strong> de la lista - one strong tag</li>
+        <li><strong>item </strong> 1 <strong>de la lista</strong> -
+          two <span>strong tags</span></li>
+        {% for i in 2..7 %}
+            <li> {{ i }} item de la lista</li>
+        {% endfor %}
+    </ul>
+    <button id="myListFil">Pulsa para ver los pares</button>
+    <button id="myListFil2">Pulsa para ver los pares</button>
+    <br><br>
+    <pre>
+        <code>
+$(function() {
+    $("#myListFil").click(function() {
+        $( "#myList li" ).filter( ":even" ).css( "background-color", "red" );
+    });
+});
+        </code>
+    </pre>
+    <br>
+    <pre>
+        <code>
+$("#myListFil2").click(function() {
+    $( "#myList li" ).filter(function() {
+      return $( "strong", this ).length === 1;
+    })
+      .css( "background-color", "red" );
+});
+        </code>
+    </pre>
+    <br>
+    <p>O podemos filtrarlos según su contenido</p>
+    
     <h3>Eligiendo los selectores</h3>
     <p>Elegir un buen selector es una manera de mejorar el rendimiento de JavaScript. Si se especifica mucho puede ser malo. Por ejemplo, un selector como “#myTable thead tr th.special” es malgastar recursos si puedes usar “#myTable th.special”.
     </p>
@@ -255,6 +298,20 @@ $(function() {
         </code>
     </pre>
     <br>
+    <h4>find() y children()</h4>
+    <p>
+        Dado un objeto jQuery que representa un conjunto de elementos DOM, 
+        el método .find () nos permite buscar a través de los descendientes 
+        de estos elementos en el árbol DOM y construir un nuevo objeto jQuery 
+        a partir de los elementos coincidentes. Los métodos .find () 
+        y .children() son similares, excepto que el último sólo viaja un 
+        nivel por el árbol DOM.
+    </p>
+    <p>
+        La primera firma del método .find () acepta una expresión de selector 
+        del mismo tipo que podemos pasar a la función $ (). Los elementos se 
+        filtrarán probando si coinciden con este selector.
+    </p>
     <h5>Hermanos, padres, vecinos...</h5>
     <p>jQuery nos permite numerosas formas de selección de los elementos incluídos en la página web.
         La forma en que los seleccionéis solo depende de vosotros. 
@@ -518,9 +575,7 @@ $(function() {
         </code>
     </pre>
     <br>
-    <h4>find()</h4>
     
-    <h4>filter()</h4>
     
 {% endblock %}
 

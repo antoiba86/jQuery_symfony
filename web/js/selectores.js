@@ -191,3 +191,16 @@ $(function() {
         .css( "color", "red" );
    });
 });
+
+$(function() {
+    $("#myListFil").click(function() {
+        $( "#myList li" ).filter( ":even" ).css( "background-color", "red" );
+    });
+    
+    $("#myListFil2").click(function() {
+        $( "#myList li" ).filter(function() {
+          return $( "strong", this ).length === 1;
+        })
+          .css( "background-color", "red" );
+    });
+});

@@ -50,6 +50,13 @@ class AppController extends Controller
     }
     
     /**
+     * @Route("/jqueryui", name="jqueryUi")
+     */
+    public function jqueryUI(){
+        return $this->render('tutorial/jqueryUi.html.twig');
+    }
+    
+    /**
      * @Route("/events", name="events")
      */
     public function events(){
