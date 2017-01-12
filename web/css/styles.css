@@ -227,6 +227,18 @@ section {
     color:red;
 }
 
+#caja_negra {
+    height: 100px;
+    width:500px;
+    background:black;
+    position:relative;
+}
+
+#blanco {
+    color:white;
+}
+
+
 /***********FOOTER***********************/
 
 footer p {

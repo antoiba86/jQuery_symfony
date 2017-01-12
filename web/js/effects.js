@@ -127,3 +127,13 @@ $( "#hoverme-stop-1" ).hover(function() {
 }, function() {
   $( this ).find( "img" ).fadeIn();
 });
+
+$( "#caja_negra" ).hover(function() {
+  $( this ).animate({
+    left: [ "+=100", "swing" ],
+    height: [ "+=150" ]
+}, 1000 );}, function() {
+  $( this ).animate({
+    left: [ "-=100", "swing" ],
+    height: [ "-=100" ]
+}, 1000 );});
