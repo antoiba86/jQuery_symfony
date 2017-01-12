@@ -210,6 +210,82 @@ $(function() {
         </code>
         </pre>
         <br>
+        <h3>Efectos personalizados con el método .animate()</h3>
+        <p>Este método te deja animar un elemento con las propiedades CSS
+            que tu quieras. Este método te deja animar un elemento a un valor
+            elegido absoluto o un valor relativo al valor actual.
+        </p>
+        <p>El método <a href="http://api.jquery.com/animate/">.animate()</a> 
+            tiene un gran número de opciones que recomiendo ver en su página.
+            Aunque hay que tener en cuenta que no se puede cambiar el background-color
+            a no ser que se tenga el plugin de <a href="https://github.com/jquery/jquery-color">jQuery Color</a>.
+        </p>
+        <div id="caja_negra">
+            <p id="blanco">Soy una caja negra que mide 100px de alto.</p>
+        </div>
+        <pre>
+        <code>
+$( "#caja_negra" ).hover(
+    function() {
+        $( this ).animate({
+          left: [ "+=100", "swing" ],
+          height: [ "+=150" ]
+        }, 1000 );
+    }, 
+    function() {
+        $( this ).animate({
+          left: [ "-=100", "swing" ],
+          height: [ "-=100" ]
+        }, 1000 );
+    }
+);
+        </code>
+        </pre>
+        <br>
+        <h3>Queue</h3>
+        <p>La encadenación de métodos son la base para todas las animaciones en 
+            jQuery, que permiten que una serie de funciones sean ejecutadas 
+            asincrónicamente en un elemento. Métodos como .slideUp (), 
+            .slideDown (), .fadeIn () y .fadeOut () usan todos .animate (), 
+            que aprovecha las colas para crear la serie de pasos que cambiarán
+            uno o más valores CSS a lo largo de la duración de la animación.
+            Podemos pasar una función Callback al método .animate (), 
+            que se ejecutará una vez que la animación se haya completado.
+        </p>
+        <p>La longitud de métodos encadenados es: <span id="spanQ"></span></p>
+        <div id="contQ">
+            <div id="boxQ">
+
+            </div>
+        </div>
+        <button id="buttonQ">Púlsame para ver un cuadrado mágico</button><br><br>
+        <pre>
+        <code>
+$("#buttonQ").click(function() {
+    runIt();
+    showIt();
+});
+
+function runIt() {
+    $("#boxQ")
+    .show( "slow" )
+    .animate({ left: "+=200" }, 2000 )
+    .slideToggle( 1000 )
+    .slideToggle( "fast" )
+    .animate({ left: "-=200" }, 1500 )
+    .hide( "slow" )
+    .show( 1200 )
+    .slideUp( "normal", runIt );
+}
+
+function showIt() {
+  var n = $("#boxQ").queue( "fx" );
+  $( "#spanQ" ).text( n.length );
+  setTimeout( showIt, 100 );
+}
+        </code>
+        </pre>
+        <br>
         <h3>Método delay()</h3>
         <p>
             El método delay() permite pausar ejecuciones de funciones que se siguen
@@ -340,20 +416,6 @@ $( "#hoverme-stop-1" ).hover(function() {
         </code>
         </pre>
         <br>
-        <h3>Efectos personalizados con el método .animate()</h3>
-        <p>Este método te deja animar un elemento con las propiedades CSS
-            que tu quieras. Este método te deja animar un elemento a un valor
-            elegido absoluto o un valor relativo al valor actual.
-        </p>
-        <p>El método <a href="http://api.jquery.com/animate/">.animate()</a> 
-            tiene un gran número de opciones que recomiendo ver en su página.
-            Aunque hay que tener en cuenta que no se puede cambiar el background-color
-            a no ser que se tenga el plugin de <a href="https://github.com/jquery/jquery-color">jQuery Color</a>.
-        </p>
-        <div id="caja_negra">
-            <p id="blanco">Soy una caja negra que mide 100px de alto.</p>
-        </div>
-        
     </div>
 {% endblock %}
 

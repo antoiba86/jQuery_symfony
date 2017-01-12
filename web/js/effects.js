@@ -137,3 +137,26 @@ $( "#caja_negra" ).hover(function() {
     left: [ "-=100", "swing" ],
     height: [ "-=100" ]
 }, 1000 );});
+
+$("#buttonQ").click(function() {
+    runIt();
+    showIt();
+});
+
+function runIt() {
+    $("#boxQ")
+    .show( "slow" )
+    .animate({ left: "+=200" }, 2000 )
+    .slideToggle( 1000 )
+    .slideToggle( "fast" )
+    .animate({ left: "-=200" }, 1500 )
+    .hide( "slow" )
+    .show( 1200 )
+    .slideUp( "normal", runIt );
+}
+
+function showIt() {
+  var n = $("#boxQ").queue( "fx" );
+  $( "#spanQ" ).text( n.length );
+  setTimeout( showIt, 100 );
+}
